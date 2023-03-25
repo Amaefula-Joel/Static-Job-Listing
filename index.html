@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- displays site properly based on user's device -->
+
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+
+    <script src="handlebars.min-v4.7.7.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script> -->
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100;200;300;400;500;600;700;900&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
+    <title>Frontend Mentor | Job Listings</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+        .attribution {
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .attribution a {
+            color: hsl(228, 45%, 44%);
+        }
+    </style>
+</head>
+
+<body>
+
+    <main>
+        <h1 class="visually-hidden">JOB LISTING PAGE</h1>
+        <!-- top image -->
+        <div class="top">
+
+        </div>
+
+        <div class="searchContainer" id="searchContainer">
+
+            <!-- <div class="searchFlex">
+        <div class="filterItem"> Frontend</div>
+        <button data-type="role" data-value="Frontend"><img src="images/icon-remove.svg" alt="remove"></button>
+        </div> -->
+
+            <!-- <script id="searchCategortTemp" type="text/x-handlebars">
+        <div class="searchFlex">
+            <div class="filterItem"> Frontend</div>
+            <button data-type="role" data-value="Frontend"><img src="images/icon-remove.svg" alt="remove"></button>
+            </div>
+        </script> -->
+        </div>
+
+        <div class="job-container" id="job-container">
+
+            <script id="jobTemplate" type="text/x-handlebars">
+
+            <article class="job-item {{#if featured}}featured{{/if}}">
+            <img src="{{logo}}" alt="{{company}}" class="company-image">
+            <div class="job-content">
+                <div class="job-title">
+                <div class="heading">
+                    <h3 class="company-name">{{company}}</h3>
+                    {{#if new}}<span class="new">new!</span>{{/if}}
+                    {{#if featured}}<span class="featured">featured</span>{{/if}}
+                </div>
+                <p class="role">{{position}}</p>
+                <div class="job-spec">
+                    <span>{{postedAt}}</span>
+                    <span>{{contract}}</span>
+                    <span>{{location}}</span>
+                </div>
+                </div>
+                <div class="job-catergories">
+                <button class="btn" type="button" data-type="role" data-role="{{role}}">{{role}}</button>
+                <button class="btn" type="button" data-type="level" data-level="{{level}}">{{level}}</button>
+                {{#each languages}}
+                    <button class="btn" type="button" data-type="languages" data-languages="{{this}}">{{this}}</button>
+                {{/each}}
+                {{#each tools}}
+                    <button class="btn" type="button" data-type="tools" data-tools="{{this}}">{{this}}</button>
+                {{/each}}
+                </div>
+            </div>
+            </article>
+        
+        </script>
+        </div>
+
+
+    </main>
+
+    <!-- <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="#">Your Name Here</a>. -->
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+
+</html>
