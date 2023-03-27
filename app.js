@@ -3,13 +3,13 @@
 const jobTemplate = document.getElementById("jobTemplate").innerHTML;
 const templateFunc = Handlebars.compile(jobTemplate);
 
-// --- for populating search categories ---
-// const searchTemplate = document.getElementById("searchCategortTemp").innerHTML;
-// const searchTempFunc = Handlebars.compile(searchTemplate);
-
-
 const jobContainer = document.querySelector("#job-container");
 const searchContainer = document.querySelector("#searchContainer");
+const searchContent = document.querySelector("#searchContent");
+const clearSearchBtn = document.querySelector(".clearSearchBtn");
+
+// for storing all the job data
+let jobArray;
 
 // filter parameters
 let filters = {
@@ -33,6 +33,8 @@ async function jobData() {
 
         const data = await response.json();
 
+        jobArray = data;
+
         populateJob(data);
     } catch (error) {
         console.error('Error fetching or parsing job data:', error);
@@ -49,12 +51,6 @@ function populateJob(jobs) {
     btns.forEach(function (button) {
         button.addEventListener("click", function () {
             const dataType = button.dataset.type;
-
-            // -- for further test on handlebars library -- 
-            // let searchData = {
-            //     type: dataType,
-            //     value: ""
-            // }
 
             if (dataType === "role") {
 
@@ -108,7 +104,7 @@ function addSearchCategory(type, value) {
     let foundElement = false;
 
     elementWithDataAttribute.forEach(function (element) {
-        if (searchContainer.contains(element)){
+        if (searchContent.contains(element)){
             if (element.getAttribute("data-value") === value) {
                 foundElement = true;
             }
@@ -121,13 +117,7 @@ function addSearchCategory(type, value) {
         createdButton.innerHTML = `
             <div class="filterItem"> ${value}</div>
             <button data-type="${type}" data-value="${value}" class="deleteBtn"><img src="images/icon-remove.svg" alt="remove"></button>`;
-        searchContainer.appendChild(createdButton);
-        
-        // searchContainer.innerHTML += `
-        // <div class="searchFlex">
-        //     <div class="filterItem"> ${value}</div>
-        //     <button data-type="${type}" data-value="${value}" class="deleteBtn"><img src="images/icon-remove.svg" alt="remove"></button>
-        // </div>`;
+        searchContent.appendChild(createdButton);
     }
 
     const deleteBtns = document.querySelectorAll(".deleteBtn");
@@ -157,10 +147,28 @@ function deleteOneCategory() {
     parentOfButton.remove();
     
     // hide the searchContainer if it has nothing ot show
-    if (searchContainer.childElementCount < 1) {
+    if (searchContent.childElementCount < 1) {
         searchContainer.classList.remove("show");
     }
 
-    console.log(jobData());
+    filterCategory(jobArray);
 
 }
+
+// for clearing the all the search categories and populating all the data
+clearSearchBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+
+    filters = {
+        role: "",
+        level: "",
+        languages: [],
+        tools: []
+    }
+
+    searchContent.innerHTML = "";
+
+    searchContainer.classList.remove("show");
+
+    filterCategory(jobArray);
+});

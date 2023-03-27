@@ -1,3 +1,22 @@
+:root{
+    --primary-100: hsl(180, 52%, 96%);
+    --primary-200: hsl(180, 39%, 56%);
+    --primary-300: hsl(179, 29%, 51%);
+
+
+    /* stored variablas  color */
+    --color-100: hsl(180, 52%, 96%);
+    --color-200: hsl(180, 31%, 95%);
+    --color-300: hsl(180, 8%, 52%);
+    --color-400: hsl(180, 14%, 20%);
+
+
+    --company-image-height: 50px;
+    --company-image-width: 50px;
+
+
+    --transition: .3s;
+}
 
 /* Box sizing rules */
 *,
@@ -88,26 +107,6 @@ button {
     border: 0;
 }
 
-:root{
-    --primary-100: hsl(180, 52%, 96%);
-    --primary-200: hsl(180, 39%, 56%);
-    --primary-300: hsl(179, 29%, 51%);
-
-
-    /* stored variablas  color */
-    --color-100: hsl(180, 52%, 96%);
-    --color-200: hsl(180, 31%, 95%);
-    --color-300: hsl(180, 8%, 52%);
-    --color-400: hsl(180, 14%, 20%);
-
-
-    --company-image-height: 50px;
-    --company-image-width: 50px;
-
-
-    --transition: .3s;
-}
-
 @media (min-width: 768px) {
     :root{
         --company-image-height: 70px;
@@ -130,32 +129,44 @@ body{
 .job-item{
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.096);
     background-color: #fff;
-    font-size: 15px;
+    font-size: 14px;
     /* makes this not expand much an at the center */
     max-width: 1100px;
 }
 
+.search-center{
+    display: flex;
+    justify-content: center;
+}
+
 .searchContainer{
+    width: 100%;
     background-color: #fff;
     padding: 10px;
-    margin: -40px auto 0;
-    flex-wrap: wrap;
-    gap: 10px;
+    margin: -40px 20px 0;
     border-radius: 6px;
+    grid-template-columns: 1fr auto;
+    align-items: center;
 
     display: none;
 }
 
 .searchContainer.show{
-    display: flex;
+    display: grid;
 }
 
-.searchContainer .searchFlex{
+.searchContent{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.searchContent .searchFlex{
     display: flex;
     width: fit-content;
 }
 
-.searchContainer .searchFlex .filterItem{
+.searchContent .searchFlex .filterItem{
     color: var(--primary-200);
     font-weight: 700;
     padding: 7px;
@@ -163,7 +174,7 @@ body{
     border-radius: 2px;
 }
 
-.searchContainer .searchFlex button{
+.searchContent .searchFlex button{
     color: #fff;
     padding: 0 10px;
     background-color: var(--primary-300);
@@ -171,8 +182,25 @@ body{
     cursor: pointer;
 }
 
-.searchContainer .searchFlex button:hover{
+.searchContent .searchFlex button:hover{
     background-color: var(--color-400);
+}
+
+.clearSearchBtn{
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--color-400);
+}
+
+.clearSearchBtn:hover{
+    color: var(--primary-200);
+    text-decoration: underline;
+}
+
+@media (min-width: 768px) {
+    .searchContainer{
+        padding: 10px 35px;
+    }
 }
 
 
@@ -300,7 +328,7 @@ body{
 
     .job-item{
         grid-template-columns: auto 1fr;
-        padding: 30px 20px;
+        padding: 30px 35px;
         margin-bottom: 20px;
     }
 
